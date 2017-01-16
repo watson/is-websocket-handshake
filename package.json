@@ -1,6 +1,6 @@
 {
   "name": "is-websocket-handshake",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Check if a request is a WebSocket handshake request",
   "main": "index.js",
   "dependencies": {},
@@ -35,5 +35,9 @@
   "bugs": {
     "url": "https://github.com/watson/is-websocket-handshake/issues"
   },
-  "homepage": "https://github.com/watson/is-websocket-handshake#readme"
+  "homepage": "https://github.com/watson/is-websocket-handshake#readme",
+  "coordinates": [
+    55.68092859999999,
+    12.5640601
+  ]
 }
