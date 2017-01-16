@@ -1,0 +1,38 @@
+{
+  "name": "is-websocket-handshake",
+  "version": "0.0.0",
+  "description": "Check if a request is a WebSocket handshake request",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^8.6.0",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "standard && node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watson/is-websocket-handshake.git"
+  },
+  "keywords": [
+    "websocket",
+    "websockets",
+    "ws",
+    "handshake",
+    "request",
+    "init",
+    "bootstrap",
+    "validate",
+    "test",
+    "check",
+    "http",
+    "https"
+  ],
+  "author": "Thomas Watson Steen <w@tson.dk> (https://twitter.com/wa7son)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watson/is-websocket-handshake/issues"
+  },
+  "homepage": "https://github.com/watson/is-websocket-handshake#readme"
+}
