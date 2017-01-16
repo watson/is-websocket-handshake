@@ -1,8 +1,10 @@
 'use strict'
 
 var http = require('http')
+var semver = require('semver')
 var test = require('tape')
 var isWebSocketHandshake = require('./')
+var pre4 = semver.lt(process.version, '4.0.0')
 
 test('Proper WebScoket handshake', function (t) {
   var server = http.createServer(function (req, res) {
@@ -32,16 +34,30 @@ test('Proper WebScoket handshake', function (t) {
 })
 
 test('Non-handshake - GET request', function (t) {
-  var server = http.createServer(function (req, res) {
-    t.equal(isWebSocketHandshake(req), false)
-    res.end()
-    server.close()
-    t.end()
-  })
+  if (pre4) {
+    // handle bad behavior in node 0.10 and 0.12
+    var server = http.createServer(function (req, res) {
+      t.fail('should not emit request event')
+    })
 
-  server.on('upgrade', function (req, socket, head) {
-    t.fail('should not emit upgrade event')
-  })
+    server.on('upgrade', function (req, socket, head) {
+      t.equal(isWebSocketHandshake(req), false)
+      socket.end()
+      server.close()
+      t.end()
+    })
+  } else {
+    var server = http.createServer(function (req, res) {
+      t.equal(isWebSocketHandshake(req), false)
+      res.end()
+      server.close()
+      t.end()
+    })
+
+    server.on('upgrade', function (req, socket, head) {
+      t.fail('should not emit upgrade event')
+    })
+  }
 
   server.listen(function () {
     var opts = {
